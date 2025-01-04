@@ -1,32 +1,37 @@
-public class Guest {
-    private String name;
-    private String contactNumber;
+import java.util.Objects;
 
+class Guest extends Person {
 
     public Guest(String name, String contactNumber) {
-        this.name = name;
-        this.contactNumber = contactNumber;
+        super(name, contactNumber);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
+    @Override
     public void displayInfo() {
-        System.out.println("Guest Name: " + name);
-        System.out.println("Contact Number: " + contactNumber);
+        System.out.println("Guest Name: " + getName());
+        System.out.println("Contact Number: " + getContactNumber());
         System.out.println("------------------------");
+    }
+
+    @Override
+    public String toString() {
+        return "Guest{" +
+                "name='" + getName() + '\'' +
+                ", contactNumber='" + getContactNumber() + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Guest guest = (Guest) o;
+        return Objects.equals(getName(), guest.getName()) &&
+                Objects.equals(getContactNumber(), guest.getContactNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getContactNumber());
     }
 }
